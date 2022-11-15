@@ -1,4 +1,33 @@
-### 支持整数加减法的计算器
-编译：make test
-执行：./test  之后输入想要计算的表达式
-退出执行：ctrl + D
+# $\lambda$ Calculus
+## tokens
+`[A-Z]` for symbol (i.e., name of a $\lambda$ calculus)
+
+`[a-z]` for identifier inside $\lambda$ calculus (i.e., variable names, free or bound)
+
+`$` for start of function definition
+
+`.` for delimiter of argument and body
+
+## algebra[^1]
+define $0$:
+```
+O=$x.$y.y
+```
+
+define successor
+```
+S=$w.$j.$i.j((w j)i)
+```
+then one should be
+```
+I = S O
+```
+try `make && ./test<demo.in`, and the $\sum_0^{12}i$ and $6!$ should be calculated and output.
+## TODO
+- default left associative apply not implemented yet
+- and identifier should be separated with blank for now
+- $Y R I$ should be written as $(Y R) I$ explicitly
+- performance optimization, caused *OOM* when calculating $\sum_0^{36}i$
+
+## Reference
+[^1]: [Rojas R. A Tutorial Introduction to the Lambda Calculus. FU Berlin[R]. WS-96/98, 1997.](https://personal.utdallas.edu/~gupta/courses/apl/lambda.pdf)

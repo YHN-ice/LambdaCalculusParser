@@ -1,0 +1,5 @@
+.history
+.vscode
+*.dSYM
+.DS_Store
+

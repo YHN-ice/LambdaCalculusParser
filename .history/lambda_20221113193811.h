@@ -1,0 +1,4 @@
+struct lambda{
+    char identifier;
+    
+};

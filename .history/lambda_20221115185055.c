@@ -164,7 +164,6 @@ struct L *exhaustive_apply(struct L *l){
     changed = 1;
     while (changed)
     {
-        changed = 0;
         recursive_apply(l);
     }
     return l;

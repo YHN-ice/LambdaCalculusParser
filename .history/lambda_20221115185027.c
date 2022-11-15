@@ -161,13 +161,7 @@ struct L *recursive_apply(struct L *l){
 }
 
 struct L *exhaustive_apply(struct L *l){
-    changed = 1;
-    while (changed)
-    {
-        changed = 0;
-        recursive_apply(l);
-    }
-    return l;
+    while(1)
 }
 struct L* get_copy(struct L *src){
     struct L* res = (struct L *)malloc(sizeof(struct L));

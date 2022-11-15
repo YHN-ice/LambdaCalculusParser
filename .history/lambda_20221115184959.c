@@ -154,21 +154,12 @@ struct L *recursive_apply(struct L *l){
         recursive_apply(l->l.ap.arg);
         if(l->l.ap.func->type==1){
             apply(l);
-            changed = 1;
         }
     }
     return l;
 }
 
-struct L *exhaustive_apply(struct L *l){
-    changed = 1;
-    while (changed)
-    {
-        changed = 0;
-        recursive_apply(l);
-    }
-    return l;
-}
+struct L *exhaustive_apply(struct L *l)
 struct L* get_copy(struct L *src){
     struct L* res = (struct L *)malloc(sizeof(struct L));
     clone(src, res);

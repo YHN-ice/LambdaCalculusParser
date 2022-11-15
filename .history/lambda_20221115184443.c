@@ -4,8 +4,6 @@
 #include <assert.h>
 #include "lambda.h"
 
-int changed;
-
 struct L *createFunction(){
     struct L* l = (struct L *)malloc(sizeof(struct L));
     l->type = 1;
@@ -142,33 +140,31 @@ struct L *apply(struct L *l)
     l->l = old_ptr->l.f.body->l;
     return l;
 }
-struct L *recursive_apply(struct L *l){
-    if(l->type==0){
-        /*do nothing*/
-    }
-    else if(l->type==1){
-        recursive_apply(l->l.f.body);
-    }
-    else{
-        recursive_apply(l->l.ap.func);
-        recursive_apply(l->l.ap.arg);
-        if(l->l.ap.func->type==1){
-            apply(l);
-            changed = 1;
+
+struct L *exhaustive_apply(struct L *l){
+    while(!is_normal_form(l)){
+        printf("applying to...\n\n");
+        printLambda(l);
+        // printf("first try exh\n");
+        if (l->type == 2)
+        {
+            exhaustive_apply(l->l.ap.func);
+            if(l->l.ap.func->type==1)
+                apply(l);
+            else if(l->l.ap.func->type==2){
+                break;
+            }
+            else{
+                exhaustive_apply(l->l.ap.arg);
+            }
+        }
+        else if(l->type==1){
+            exhaustive_apply(l->l.f.body);
         }
     }
     return l;
 }
 
-struct L *exhaustive_apply(struct L *l){
-    changed = 1;
-    while (changed)
-    {
-        changed = 0;
-        recursive_apply(l);
-    }
-    return l;
-}
 struct L* get_copy(struct L *src){
     struct L* res = (struct L *)malloc(sizeof(struct L));
     clone(src, res);

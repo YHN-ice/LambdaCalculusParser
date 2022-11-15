@@ -40,20 +40,24 @@
       know about them.  */
    enum yytokentype {
      IDENTIFIER = 258,
-     LAMBDA = 259,
-     DOT = 260,
-     EOL = 261,
-     LP = 262,
-     RP = 263
+     SYMBOL = 259,
+     LAMBDA = 260,
+     DOT = 261,
+     EQ = 262,
+     EOL = 263,
+     LP = 264,
+     RP = 265
    };
 #endif
 /* Tokens.  */
 #define IDENTIFIER 258
-#define LAMBDA 259
-#define DOT 260
-#define EOL 261
-#define LP 262
-#define RP 263
+#define SYMBOL 259
+#define LAMBDA 260
+#define DOT 261
+#define EQ 262
+#define EOL 263
+#define LP 264
+#define RP 265
 
 
 
@@ -66,7 +70,7 @@ typedef union YYSTYPE
   struct L* lp;
 }
 /* Line 1529 of yacc.c.  */
-#line 70 "test.tab.h"
+#line 74 "test.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -1,0 +1,3 @@
+T = ($x.$y.x)
+
+apply(apply(func(head:s,body:func(head:z,body:name:z))<-name:y)<-name:x)

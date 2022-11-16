@@ -150,11 +150,19 @@ struct L *recursive_apply(struct L *l){
         recursive_apply(l->l.f.body);
     }
     else{
-        recursive_apply(l->l.ap.func);
-        recursive_apply(l->l.ap.arg);
         if(l->l.ap.func->type==1){
+            #define __EXH_DBG
+            #ifdef __EXH_DBG
+            printf("\n====================nowhere applying...=======================\n");
+            printLambda(l);
+            printf("\n==============================================================\n");
+            #endif
             apply(l);
             changed = 1;
+        }
+        else{
+            recursive_apply(l->l.ap.func);
+            recursive_apply(l->l.ap.arg);
         }
     }
     return l;

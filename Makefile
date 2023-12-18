@@ -16,7 +16,13 @@ bison:= /usr/local/Cellar/bison/3.8.2/bin/bison
 CXX:= clang++ 
 CXXFLAGS := -isysroot `xcrun --show-sdk-path` -Wno-register -DPROD 
 CPPFLAGS := -I$(INCLUDE_DIR) -MMD -MP
+else
+bison:= bison
+CXX:= clang++ 
+CXXFLAGS := -Wno-register -DPROD 
+CPPFLAGS := -I$(INCLUDE_DIR) -MMD -MP
 endif
+
 
 .PHONY: all clean check
 

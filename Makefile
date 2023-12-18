@@ -5,7 +5,7 @@ OBJ_DIR := obj
 BIN_DIR := bin
 INCLUDE_DIR := src/include
 
-EXE := $(BIN_DIR)/main
+EXE := $(BIN_DIR)/driver
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
@@ -32,6 +32,9 @@ all: $(EXE)
 $(EXE): $(OBJ) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+$(BIN_DIR)/lambda_repl: $(SRC_DIR)/Scanner1.cpp $(SRC_DIR)/Parser1.cpp $(SRC_DIR)/store.cpp $(SRC_DIR)/lambda.cpp | $(BIN_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -DSTANDALONE $^ -o $@
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/Scanner1.cpp | $(OBJ_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
@@ -50,7 +53,7 @@ $(BIN_DIR) $(OBJ_DIR):
 
 TEST_CMD = ./bin/main
 
-check: tests/test.txt $(BIN_DIR) 
+check: tests/test.txt $(BIN_DIR) $(EXE)
 	@echo "Running tests..."
 	@while read -r line; do \
 	    test_case=$$line; \

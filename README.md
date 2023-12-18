@@ -1,5 +1,6 @@
-# $\lambda$ Calculus
+![Arithmic Check](https://github.com/YHN-ice/LambdaCalculusParser/actions/workflows/c-cpp.yml/badge.svg?event=push)
 
+# $\lambda$ Calculus
 ## tokens
 
 `[A-Z]` for symbol (i.e., name of a $\lambda$ calculus)

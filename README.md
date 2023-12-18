@@ -118,7 +118,7 @@ To add a customized recursive function, put a new lambda function definition in 
   - and identifier should be separated with blank for now
   - $Y R I$ should be written as $(Y R) I$ explicitly
 
-- [x] performance optimization, used to cause _OOM_ when calculating $\sum_0^{36}i$
+- [x] performance optimization, used to cause _OOM_ when calculating $\sum_{i=0}^{36}i$
   - (the order of reduction/apply, outermost or innermost, for now just greedily apply if possible)
   - solved by recursive call optimization.
 - [ ] dynamic library, read in function definition, translate to lambda calculus, and capture any further calling to make it run in lambda calculus framework (in hope of reduced recursive call stack space)
@@ -127,8 +127,6 @@ To add a customized recursive function, put a new lambda function definition in 
 - [ ] **practical/most crucial/theoretical challenge**: what kind of functions(with costive recursive calls) can be interpreted as lambda calculus and run in the paradigm of lambda reduction
 
 - [ ] **Fix error** when calculate `M FOUR SEVEN S NINE`, which is correct when calculated as  `NINE S (M FOUR SEVEN)`
-
-((M FOUR SEVEN) S) NINE
 
 ## Reference
 

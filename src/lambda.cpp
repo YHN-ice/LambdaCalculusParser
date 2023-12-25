@@ -277,8 +277,11 @@ void Impl::apply(){
   counter["apply"] += 1;
   // printf("call apply\n");
 #endif
-  while(reduce())
-    ;
+  while(reduce()) {
+    printf("+++\n");
+    dump();
+    printf("---\n");
+  }
 }
 bool Impl::reduce()
 {

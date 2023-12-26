@@ -177,11 +177,27 @@ L L::recursive_apply(){
   Recursive r(generator.to_impl());
   return from_impl(Impl::i2l(r.reduce(l2i(arg_l))));
 }
+
+Impl alpha_reduction(Impl i) {
+  assert(i.type==FUN);
+  static unsigned long long cnt = 0;
+  std::string new_name = "";
+  int name_idx = cnt++;
+  while (name_idx>0) {
+      new_name += 'a' + name_idx % 26;
+      name_idx /= 26;
+    }
+  Impl new_var = Impl(VAR, new_name, {});
+  i.data[0].replace(i.var, new_var);
+  i.var = new_name;
+  return i;
+}
+
 Impl L::to_impl(){
   if(type==VAR) {
     return Impl(VAR,var,{});
   } else if(type==FUN){
-    return Impl(FUN, para, {load_symbol(body).to_impl()});
+    return alpha_reduction(Impl(FUN, para, {load_symbol(body).to_impl()}));
   } else {
     return Impl(APP, "", {load_symbol(callee).to_impl(),load_symbol(arg).to_impl()});
   }

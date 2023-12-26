@@ -126,7 +126,7 @@ To add a customized recursive function, put a new lambda function definition in 
 
 - [ ] **practical/most crucial/theoretical challenge**: what kind of functions(with costive recursive calls) can be interpreted as lambda calculus and run in the paradigm of lambda reduction
 
-- [ ] **Fix error** when calculate `M FOUR SEVEN S NINE`, which is correct when calculated as  `NINE S (M FOUR SEVEN)`
+- [x] **Fix error** when calculate `M FOUR SEVEN S NINE`, which is correct when calculated as  `NINE S (M FOUR SEVEN)`
       - So I find out the root of the bug, its when we brought a free variable in to a bounded term, i.e., body of a function abstraction. Here is a scenario that happens in a reduction as `(((M (S(S(O)))) (S(O)) S) I)`
         ```+($m. ++( _($w.($n.($m.(n ((w n) m)))))_  ((($s.($z.z)) ($w.($n.($m.(n ((w n) m)))))) m)  )++ )+ ```
         The replace ment happens in the range surrouned by `++`, the `_(.)_` is a function to be applied. The second term contains a `m` variable that is bounded by the outermost `$m`. When replacing the `w` in `$n.$m.(n ((w n) m) ), the `m` will be accidently brought in the intermost function, and thus bounded by wrongly by that `$m`. To fix that problem, we need a non-conflicting naming schema.
